@@ -1,6 +1,6 @@
 package cb.estudiantes.service;
 
-import cb.estudiantes.model.Student;
+import cb.estudiantes.model.Estudiante;
 import cb.estudiantes.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,24 +14,39 @@ public class StudentService implements IStudentService {
     private StudentRepository sr;
 
     @Override
-    public List<Student> allStudents() {
-        List<Student> students = sr.findAll();
-        return students;
+    public List<Estudiante> allStudents() {
+        List<Estudiante> estudiantes = sr.findAll();
+        return estudiantes;
     }
 
     @Override
-    public Student searchByID(Integer idStudent) {
-        Student student = sr.findById(idStudent).orElse(null); //con el orELse si no encuentro el objeto alumno regreso nulo
-        return student;
+    public Estudiante searchByID(Integer idStudent) {
+        Estudiante estudiante = sr.findById(idStudent).orElse(null); //con el orELse si no encuentro el objeto alumno regreso nulo
+        if (estudiante != null)
+            System.out.println("Estudiante Encontrado. Estos son su datos:");
+        else
+            System.out.println("No existen coincidencias con el ID ingresado.");
+        return estudiante;
     }
 
     @Override
-    public void saveStudent(Student student) {
-        sr.save(student);
+    public void saveStudent(Estudiante estudiante) {
+        try {
+            sr.save(estudiante);
+            System.out.println("Estudiante Añadido con exito");
+        } catch (Exception e) {
+            System.out.println("No se pudo añadir al estudiante al registro");
+        }
     }
 
     @Override
-    public void deleteStudent(Student student) {
-        sr.delete(student);
+    public void deleteStudent(Estudiante estudiante) {
+        try {
+            sr.delete(estudiante);
+            System.out.println("Alumnado eliminado exitosamente!");
+        } catch (Exception e) {
+            System.out.println("No se ha podido eliminar." +
+                    "\nEl Alumno no se encuentra registrado.");
+        }
     }
 }

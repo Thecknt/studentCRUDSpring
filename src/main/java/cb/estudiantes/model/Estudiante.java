@@ -14,25 +14,29 @@ import lombok.NoArgsConstructor;
 @Data  //get y set
 @NoArgsConstructor //constructor sin argumentos
 @AllArgsConstructor //constructor con todos los argumentos
- public class Student {
+ public class Estudiante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idStudent;
-    private String name;
-    private String lastname;
-    private String phone;
+    private Integer id_estudiante;
+    private String nombre;
+    private String apellido;
+    private String telefono;
 
     private String email;
 
     @Override
     public String toString() {
-       return "Datos del Estudiante N°:" +
-               idStudent +
-               "\nNombre: '" + name + '\'' +
-               "\nApellido: '" + lastname+ '\'' +
-               "\nTelefono: " + phone +
-               "\nEmail: " + email;
+       return  "**********************************"+
+               "\nDatos del Estudiante N°:" +
+               id_estudiante +
+               "\nNombre: '" + nombre + '\'' +
+               "\nApellido: '" + apellido + '\'' +
+               "\nTelefono: " + telefono +
+               "\nEmail: " + email +
+               "\n**********************************"+
+               "\n ";
+
     }
 
     //en lombok tambien podria hacer el toString, pero en este caso preferi personalizarlo
